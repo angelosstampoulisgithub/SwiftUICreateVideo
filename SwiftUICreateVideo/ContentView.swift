@@ -20,7 +20,7 @@ struct ContentView: View {
     @State private var statusMessage = ""
     @State private var generatedVideoURL: URL?
     @State private var showPicker = false
-    
+    @State private var generator = VideoGenerator()
     var body: some View {
         ZStack {
             LinearGradient(colors: [.purple.opacity(0.4), .blue.opacity(0.4)],
@@ -165,7 +165,7 @@ struct ContentView: View {
         let url = videoOutputURL()
         
         do {
-            try await createAdvancedVideo(
+            try await generator.createAdvancedVideo(
                 images: images,
                 outputURL: url,
                 durationPerImage: durationPerImage,
